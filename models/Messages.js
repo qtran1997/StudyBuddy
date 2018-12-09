@@ -21,7 +21,11 @@ const MessengerSchema = new Schema({
                 ref: "users",
                 required: true
             },
-            name: {
+            fname: {
+                type: String,
+                required: true
+            },
+            lname: {
                 type: String,
                 required: true
             },

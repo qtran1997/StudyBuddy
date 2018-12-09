@@ -7,11 +7,13 @@ const keys = require("../../config/keys");
 const passport = require("passport");
 
 // Load Input Validation
+const changeSettings = require("../../validation/changeSettings");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
 // Load User model
 const User = require("../../models/User");
+const Profile = require("../../models/User");
 
 // @route   GET api/users/tests
 // @desc    Test users route
@@ -29,10 +31,18 @@ router.post("/register", (req, res) => {
         return res.status(400).json(errors);
     }
 
-    User.findOne({ email: req.body.email })
+    User.find({
+        $or: [{ email: req.body.email }, { username: req.body.username }]
+    })
         .then(user => {
             if (user) {
-                errors.email = "Email already exists";
+                user.forEach(user => {
+                    if (user.email == req.body.email)
+                        errors.email = "Email already exists";
+                    if (user.username == req.body.username)
+                        errors.username = "Username already exists";
+                });
+
                 return res.status(400).json(errors);
             } else {
                 const avatar = gravatar.url(req.body.email, {
@@ -42,7 +52,9 @@ router.post("/register", (req, res) => {
                 });
 
                 const newUser = new User({
-                    name: req.body.name,
+                    username: req.body.username,
+                    fname: req.body.fname,
+                    lname: req.body.lname,
                     email: req.body.email,
                     avatar,
                     password: req.body.password
@@ -55,7 +67,7 @@ router.post("/register", (req, res) => {
                         newUser
                             .save()
                             .then(user => res.json(user))
-                            .catch(err => console.log(err));
+                            .catch(err => res.json(err));
                     });
                 });
             }
@@ -74,16 +86,14 @@ router.post("/login", (req, res) => {
         return res.status(400).json(errors);
     }
 
-    const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
-
-    // Find user by email
-    User.findOne({ email })
+    // Find user by username
+    User.findOne({ username: { $regex: new RegExp(username, "i") } })
         .then(user => {
             // Check for user
-
             if (!user) {
-                errors.email = "User not found";
+                errors.username = "User not found";
                 return res.status(404).json(errors);
             }
 
@@ -94,12 +104,14 @@ router.post("/login", (req, res) => {
 
                     const payload = {
                         id: user.id,
-                        name: user.name,
-                        avatar: user.avatar
+                        username: user.username,
+                        fname: user.fname,
+                        lname: user.lname,
+                        avatar: user.avatar,
+                        registeredProfile: user.profileSetup
                     };
 
-                    //Sign Token
-
+                    // Sign Token
                     jwt.sign(
                         payload,
                         keys.secretOrKey,
@@ -129,9 +141,87 @@ router.get(
     (req, res) => {
         res.json({
             id: req.user.id,
-            name: req.user.name,
+            username: req.user.username,
+            fname: req.user.fname,
+            lname: req.user.lname,
             email: req.body.email
         });
     }
 );
+
+// @route   POST api/users/change-settings
+// @desc    Register users
+// @access  Public
+router.post(
+    "/change-settings",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        const { errors, isValid } = changeSettings(req.body);
+
+        let successes = {};
+        // Check Validation
+        // if (!isValid) {
+        //     return res.status(400).json(errors);
+        // }
+
+        User.findById(req.user.id)
+            .then(user => {
+                if (user) {
+                    if (req.body.username) {
+                        User.findOne({ username: req.body.username })
+                            .then(foundUser => {
+                                if (foundUser) {
+                                    errors.username =
+                                        "This username is already in use!";
+                                } else {
+                                    user.username = req.body.username;
+                                    successes.username =
+                                        "Successfully changed your username!";
+                                }
+
+                                if (req.body.fname) {
+                                    user.fname = req.body.fname;
+                                    successes.fname =
+                                        "Successfully changed your first name!";
+                                }
+                                if (req.body.lname) {
+                                    user.lname = req.body.lname;
+                                    successes.lname =
+                                        "Successfully changed your last name!";
+                                }
+                                user.save()
+                                    .then(user => {
+                                        return res.json({ successes, errors });
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                    });
+                            })
+                            .catch(err => console.log(err));
+                    }
+                }
+            })
+            .catch(err => console.log(err));
+    }
+);
+
+// @route   POST api/users/change-password-settings
+// @desc    Register users
+// @access  Public
+router.post("/change-password-settings", (req, res) => {
+    const { errors, successes, isValid } = validateRegisterInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    User.findById(req.user.id)
+        .then(user => {
+            if (user) {
+            }
+        })
+        .catch(err => console.log(err));
+});
+
 module.exports = router;

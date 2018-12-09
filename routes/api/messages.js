@@ -135,7 +135,8 @@ router.post(
 
                             const newText = {
                                 user: req.user.id,
-                                name: req.user.name,
+                                fname: req.user.fname,
+                                lname: req.user.lname,
                                 avatar: req.user.avatar,
                                 text: req.body.text
                             };
@@ -149,7 +150,8 @@ router.post(
                         } else {
                             const newText = {
                                 user: req.user.id,
-                                name: req.user.name,
+                                fname: req.user.fname,
+                                lname: req.user.lname,
                                 avatar: req.user.avatar,
                                 text: req.body.text
                             };

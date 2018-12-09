@@ -9,7 +9,9 @@ class Register extends Component {
     constructor() {
         super();
         this.state = {
-            name: ``,
+            username: ``,
+            fname: ``,
+            lname: ``,
             email: ``,
             password: ``,
             password2: ``,
@@ -22,7 +24,7 @@ class Register extends Component {
 
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/dashboard");
+            this.props.history.push("/login");
         }
     }
 
@@ -40,7 +42,9 @@ class Register extends Component {
         e.preventDefault();
 
         const newUser = {
-            name: this.state.name,
+            username: this.state.username,
+            fname: this.state.fname,
+            lname: this.state.lname,
             email: this.state.email,
             password: this.state.password,
             password2: this.state.password2
@@ -63,12 +67,30 @@ class Register extends Component {
                             </p>
                             <form noValidate onSubmit={this.onSubmit}>
                                 <TextFieldGroup
-                                    placeholder="Name"
-                                    name="name"
+                                    placeholder="Username"
+                                    name="username"
                                     type="text"
-                                    value={this.state.name}
+                                    value={this.state.username}
                                     onChange={this.onChange}
-                                    error={errors.name}
+                                    error={errors.username}
+                                />
+
+                                <TextFieldGroup
+                                    placeholder="First Name"
+                                    name="fname"
+                                    type="text"
+                                    value={this.state.fname}
+                                    onChange={this.onChange}
+                                    error={errors.fname}
+                                />
+
+                                <TextFieldGroup
+                                    placeholder="Last Name"
+                                    name="lname"
+                                    type="text"
+                                    value={this.state.lname}
+                                    onChange={this.onChange}
+                                    error={errors.lname}
                                 />
 
                                 <TextFieldGroup
