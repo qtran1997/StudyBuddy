@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
-import { capitalize } from "../../actions/functions";
+// import { capitalize } from "../../actions/functions";
 import profilePicture from "../../img/earth.png";
 
 class Dashboard extends Component {
     componentDidMount() {
-        this.props.getCurrentProfile();
+        if (!this.props.auth.isAuthenticated) {
+            this.props.history.push("/login");
+        }
     }
 
     render() {
-        const { user } = this.props.auth;
+        // const { user } = this.props.auth;
         const { profile, loading } = this.props.profile;
 
         let dashboardContent;

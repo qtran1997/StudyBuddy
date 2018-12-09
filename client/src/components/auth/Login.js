@@ -9,7 +9,7 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
-            email: ``,
+            username: ``,
             password: ``,
             errors: {}
         };
@@ -20,13 +20,17 @@ class Login extends Component {
 
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/dashboard");
+            this.props.history.push("/");
         }
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
-            this.props.history.push("/");
+            if (!nextProps.auth.user.registeredProfile) {
+                this.props.history.push("/profile-register");
+            } else {
+                this.props.history.push("/dashboard");
+            }
         }
 
         if (nextProps.errors) {
@@ -42,7 +46,7 @@ class Login extends Component {
         e.preventDefault();
 
         const userData = {
-            email: this.state.email,
+            username: this.state.username,
             password: this.state.password
         };
 
@@ -59,16 +63,16 @@ class Login extends Component {
                         <div className="col-md-8 m-auto">
                             <h1 className="display-4 text-center">Log In</h1>
                             <p className="lead text-center">
-                                Sign in to your DevConnector account
+                                Sign in to your Study Buddy account
                             </p>
                             <form onSubmit={this.onSubmit}>
                                 <TextFieldGroup
-                                    placeholder="Email Address"
-                                    name="email"
-                                    type="email"
-                                    value={this.state.email}
+                                    placeholder="Username"
+                                    name="username"
+                                    type="text"
+                                    value={this.state.username}
                                     onChange={this.onChange}
-                                    error={errors.email}
+                                    error={errors.username}
                                 />
 
                                 <TextFieldGroup
@@ -95,6 +99,7 @@ class Login extends Component {
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
+    registeredAccount: PropTypes.bool.isRequired,
     errors: PropTypes.object.isRequired
 };
 

@@ -9,11 +9,17 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Navbar from "./components/layout/Navbar";
+import Profile from "./components/layout/Profile";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
-import Dashboard from "./components/dashboard/Dashboard";
+
+import Dashboard from "./components/user/Dashboard";
+
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import ProfileSetup from "./components/auth/ProfileSetup";
+import ChangeSettings from "./components/auth/ChangeSettings";
+
 import Messenger from "./components/messenger/Messages";
 
 import "./App.css";
@@ -49,6 +55,17 @@ class App extends Component {
                         <Route exact path="/" component={Landing} />
                         <Route exact path="/dashboard" component={Dashboard} />
                         <Route exact path="/messages" component={Messenger} />
+                        <Route exact path="/profile" component={Profile} />
+                        <Route
+                            exact
+                            path="/change-settings"
+                            component={ChangeSettings}
+                        />
+                        <Route
+                            exact
+                            path="/profile-register"
+                            component={ProfileSetup}
+                        />
                         <div className="container">
                             <Route
                                 exact
@@ -57,7 +74,7 @@ class App extends Component {
                             />
                             <Route exact path="/login" component={Login} />
                         </div>
-                        {/* <Footer /> */}
+                        <Footer />
                     </div>
                 </Router>
             </Provider>

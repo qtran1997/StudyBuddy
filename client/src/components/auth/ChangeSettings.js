@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { registerUser } from "../../actions/authActions";
+import { changeSettingsUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 
-class Register extends Component {
+class ChangeSettings extends Component {
     constructor() {
         super();
         this.state = {
@@ -15,22 +15,22 @@ class Register extends Component {
             email: ``,
             password: ``,
             password2: ``,
-            errors: {}
+            errors: {},
+            successes: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    componentDidMount() {
-        if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/login");
-        }
-    }
+    componentDidMount() {}
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({ errors: nextProps.errors });
+        }
+        if (nextProps.successes) {
+            this.setState({ successes: nextProps.successes });
         }
     }
 
@@ -50,21 +50,29 @@ class Register extends Component {
             password2: this.state.password2
         };
 
-        this.props.registerUser(newUser, this.props.history);
+        this.props.changeSettingsUser(newUser);
     }
 
     render() {
         const { errors } = this.state;
+        const { successes } = this.state;
+
+        console.log(successes);
+
+        if (successes.errors) {
+        } else {
+            dsfsdfdsfdsd;
+        }
 
         return (
             <div className="register content-wrapper">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h1 className="display-4 text-center">Sign Up</h1>
-                            <p className="lead text-center">
-                                Create your DevConnector account
-                            </p>
+                            <h1 className="display-8 text-center">
+                                Change your settings and information.
+                            </h1>
+                            <hr />
                             <form noValidate onSubmit={this.onSubmit}>
                                 <TextFieldGroup
                                     placeholder="Username"
@@ -73,6 +81,11 @@ class Register extends Component {
                                     value={this.state.username}
                                     onChange={this.onChange}
                                     error={errors.username}
+                                    success={
+                                        successes.successes.username
+                                            ? successes.successes.username
+                                            : ""
+                                    }
                                 />
 
                                 <TextFieldGroup
@@ -82,6 +95,7 @@ class Register extends Component {
                                     value={this.state.fname}
                                     onChange={this.onChange}
                                     error={errors.fname}
+                                    success={successes.fname}
                                 />
 
                                 <TextFieldGroup
@@ -91,35 +105,7 @@ class Register extends Component {
                                     value={this.state.lname}
                                     onChange={this.onChange}
                                     error={errors.lname}
-                                />
-
-                                <TextFieldGroup
-                                    placeholder="Email Address"
-                                    name="email"
-                                    type="email"
-                                    value={this.state.email}
-                                    onChange={this.onChange}
-                                    error={errors.email}
-                                    info="This site uses Gravatar so if you want a
-                                        profile image, use a Gravatar email"
-                                />
-
-                                <TextFieldGroup
-                                    placeholder="Password"
-                                    name="password"
-                                    type="password"
-                                    value={this.state.password}
-                                    onChange={this.onChange}
-                                    error={errors.password}
-                                />
-
-                                <TextFieldGroup
-                                    placeholder="Confirm Password"
-                                    name="password2"
-                                    type="password"
-                                    value={this.state.password2}
-                                    onChange={this.onChange}
-                                    error={errors.password2}
+                                    success={successes.lname}
                                 />
 
                                 <input
@@ -135,18 +121,20 @@ class Register extends Component {
     }
 }
 
-Register.propTypes = {
-    registerUser: PropTypes.func.isRequired,
+ChangeSettings.propTypes = {
+    changeSettingsUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    successes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
+    errors: state.errors,
+    successes: state.successes
 });
 
 export default connect(
     mapStateToProps,
-    { registerUser }
-)(withRouter(Register));
+    { changeSettingsUser }
+)(withRouter(ChangeSettings));

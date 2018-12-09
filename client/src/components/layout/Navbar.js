@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
+import { capitalize } from "../../actions/functions";
 
 class Navbar extends Component {
     onLogoutClick(e) {
@@ -32,20 +33,47 @@ class Navbar extends Component {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <a
-                        href=""
-                        onClick={this.onLogoutClick.bind(this)}
-                        className="nav-link"
-                    >
-                        <img
-                            className="rounded-circle"
-                            src={user.avatar}
-                            alt={user.name}
-                            style={{ width: "25px", marginRight: "5px" }}
-                            title="You must have a Gravatar connected to your email to display an image"
-                        />
-                        Logout
-                    </a>
+                    <div className="dropdown show">
+                        <a
+                            className="dropdown-toggle nav-link"
+                            href=""
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            <img
+                                className="rounded-circle d-inline-block mr-2"
+                                src={user.avatar}
+                                alt={user.fname}
+                                style={{
+                                    width: "25px",
+                                    marginRight: "5px"
+                                }}
+                                title="You must have a Gravatar connected to your email to display an image"
+                            />
+                            {capitalize(user.fname)}
+                        </a>
+
+                        <div
+                            className="dropdown-menu dropdown-menu-right"
+                            aria-labelledby="dropdownMenuLink"
+                        >
+                            <Link className="dropdown-item" to="/profile">
+                                Your Profile
+                            </Link>
+                            <Link className="dropdown-item" to="/dashboard">
+                                Dashboard
+                            </Link>
+                            <a
+                                href=""
+                                onClick={this.onLogoutClick.bind(this)}
+                                className="dropdown-item"
+                            >
+                                Logout
+                            </a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         );

@@ -20,8 +20,8 @@ class Landing extends Component {
                                 <h1 className="display-3 mb-4">Study Buddy</h1>
                                 <p className="lead">
                                     {" "}
-                                    Connecting peers throughout schools in order
-                                    to get ahead in courses.
+                                    Connecting peers throughout San Diego State
+                                    University in order to get ahead in courses.
                                 </p>
                                 <hr />
                                 <Link
