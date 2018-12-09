@@ -61,7 +61,7 @@ class ChangeSettings extends Component {
 
         if (successes.errors) {
         } else {
-            dsfsdfdsfdsd;
+            // dsfsdfdsfdsd;
         }
 
         return (
