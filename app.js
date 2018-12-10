@@ -10,7 +10,7 @@ const messages = require("./routes/api/messages");
 
 const app = express();
 
-// BOdy parse middleware
+// Body parse middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -19,12 +19,12 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
-    .connect(
-        db,
-        { useNewUrlParser: true }
-    )
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err));
+	.connect(
+		db,
+		{ useNewUrlParser: true }
+	)
+	.then(() => console.log("MongoDB Connected"))
+	.catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -39,4 +39,19 @@ app.use("/api/messages", messages);
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, (req, res) => console.log(`Server running on port ${port}`));
+var server = app.listen(port, (req, res) =>
+	console.log(`Server running on port ${port}`)
+);
+
+var io = require("socket.io")(server);
+io.on("connection", function(socket) {
+	console.log("A User Connected");
+
+	socket.on("chat", function(data) {
+		io.sockets.emit("chat", data);
+	});
+
+	socket.on("disconnect", function(socket) {
+		console.log("A User Disconnected");
+	});
+});

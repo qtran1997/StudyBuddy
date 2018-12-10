@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
-import { capitalize } from "../../actions/functions";
+// import { capitalize } from "../../actions/functions";
 
 class Profile extends Component {
     constructor() {
@@ -32,7 +32,7 @@ class Profile extends Component {
 
     render() {
         const userPicture = this.props.auth.user.avatar;
-        const { user } = this.props.auth;
+        // const { user } = this.props.auth;
         const { profile, loading } = this.props.profile;
 
         let profileContent;
