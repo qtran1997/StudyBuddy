@@ -51,29 +51,40 @@ class App extends Component {
 			<Provider store={store}>
 				<Router>
 					<div className="App">
-						<Navbar />
-						<Route exact path="/" component={Landing} />
-						<Route exact path="/dashboard" component={Dashboard} />
-						<Route exact path="/messages" component={Messenger} />
-						<Route exact path="/profile" component={Profile} />
-						<Route
-							exact
-							path="/change-settings"
-							component={ChangeSettings}
-						/>
-						<Route
-							exact
-							path="/profile-register"
-							component={ProfileSetup}
-						/>
-						<div className="container">
+						<div className="content-container">
+							<Navbar />
+							<Route exact path="/" component={Landing} />
 							<Route
 								exact
-								path="/register"
-								component={Register}
+								path="/dashboard"
+								component={Dashboard}
 							/>
-							<Route exact path="/login" component={Login} />
+							<Route
+								exact
+								path="/messages"
+								component={Messenger}
+							/>
+							<Route exact path="/profile" component={Profile} />
+							<Route
+								exact
+								path="/change-settings"
+								component={ChangeSettings}
+							/>
+							<Route
+								exact
+								path="/profile-register"
+								component={ProfileSetup}
+							/>
+							<div className="container">
+								<Route
+									exact
+									path="/register"
+									component={Register}
+								/>
+								<Route exact path="/login" component={Login} />
+							</div>
 						</div>
+						<div className="Messenger" />
 						<Footer />
 					</div>
 				</Router>

@@ -1,35 +1,36 @@
 {
-    "name": "tutorial-mern",
-    "version": "1.0.0",
-    "description": "Study Buddy",
-    "main": "app.js",
-    "scripts": {
-        "client-install": "npm install --prefix client",
-        "start": "nodejs app.js",
-        "server": "nodemon app.js",
-        "client": "npm start --prefix client",
-        "db": "c:/'Program Files'/MongoDB/Server/3.6/bin/mongod.exe",
-        "startdb": "mongodb",
-        "dev": "concurrently \"npm run server\" \"npm run client\""
-    },
-    "author": "Quang Tran",
-    "license": "ISC",
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "body-parser": "^1.18.3",
-        "concurrently": "^3.6.0",
-        "express": "^4.16.3",
-        "gravatar": "^1.6.0",
-        "jsonwebtoken": "^8.3.0",
-        "jwt-decode": "^2.2.0",
-        "mongoose": "^5.2.2",
-        "passport": "^0.4.0",
-        "passport-jwt": "^4.0.0",
-        "socket.io": "^2.2.0",
-        "socket.io-client": "^2.2.0",
-        "validator": "^10.4.0"
-    },
-    "devDependencies": {
-        "nodemon": "^1.18.0"
-    }
+	"name": "tutorial-mern",
+	"version": "1.0.0",
+	"description": "Study Buddy",
+	"main": "app.js",
+	"scripts": {
+		"client-install": "npm install --prefix client",
+		"start": "nodejs app.js",
+		"server": "nodemon app.js",
+		"client": "npm start --prefix client",
+		"db": "c:/'Program Files'/MongoDB/Server/3.6/bin/mongod.exe",
+		"startdb": "mongodb",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
+	},
+	"author": "Quang Tran",
+	"license": "ISC",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.18.3",
+		"concurrently": "^3.6.0",
+		"dotenv": "^6.2.0",
+		"express": "^4.16.3",
+		"gravatar": "^1.6.0",
+		"jsonwebtoken": "^8.3.0",
+		"jwt-decode": "^2.2.0",
+		"mongoose": "^5.2.2",
+		"passport": "^0.4.0",
+		"passport-jwt": "^4.0.0",
+		"socket.io": "^2.2.0",
+		"socket.io-client": "^2.2.0",
+		"validator": "^10.4.0"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.0"
+	}
 }

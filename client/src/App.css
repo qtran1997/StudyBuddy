@@ -1,311 +1,332 @@
+/* SHELL APP */
+.App {
+	display: flex;
+	flex-direction: column;
+	min-width: 100vw;
+	min-height: 100vh;
+	flex-wrap: nowrap;
+	/* align-items: stretch; */
+}
+
+.content-container {
+	flex-grow: 1;
+}
 /*LANDING*/
 .landing {
-    position: relative;
-    background: url("./img/showcase.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
+	position: relative;
+	background: url("./img/showcase.jpg") no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
 }
 
 .landing-inner {
-    padding-top: 80px;
+	padding-top: 80px;
 }
 
 .content-wrapper {
-    padding: 50px;
+	padding: 50px;
 }
 
 /*DASHBOARD*/
 
 #dashboard-container {
-    position: relative;
-    height: 100vh;
-    padding: 50px;
+	position: relative;
+	padding: 50px;
 }
 
 .bg-color {
-    background-color: #b20015;
+	background-color: #b20015;
 }
 
 .dark-overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .card-form {
-    opacity: 0.9;
+	opacity: 0.9;
 }
 
 .form-control::placeholder {
-    color: #bbb !important;
+	color: #bbb !important;
 }
 
 .nav-link {
-    color: white !important;
+	color: white !important;
 }
 
 .page-header {
-    font-size: 32px;
+	font-size: 32px;
 }
 
 /*PROFILE*/
 #profile-container {
-    position: relative;
-    height: 100vh;
-    padding: 25px;
+	position: relative;
+	padding: 25px;
 }
 
 .profile-picture {
-    width: 256px;
-    height: 256px;
-    margin: 10px;
+	width: 256px;
+	height: 256px;
+	margin: 10px;
 }
 
 .latest-profiles-img {
-    width: 40px;
-    height: 40px;
+	width: 40px;
+	height: 40px;
 }
 
 .profile-left-panel {
-    border: 1px solid black;
-    background-color: #b20015;
-    height: 575px;
-    color: white;
-    padding: 15px;
+	border: 1px solid black;
+	background-color: #b20015;
+	height: 575px;
+	color: white;
+	padding: 15px;
 }
 
 .profile-right-panel {
-    height: 575px;
+	height: 575px;
 }
 
 .white-line {
-    border-top: 1px solid white;
+	border-top: 1px solid white;
 }
 
 .profile-title {
-    display: inline-block;
-    font-size: 18px;
-    margin: 0;
+	display: inline-block;
+	font-size: 18px;
+	margin: 0;
 }
 
 .rating-star {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
 }
 
 .rating-star span {
-    width: 25px;
-    height: 25px;
-    font-size: 26px;
+	width: 25px;
+	height: 25px;
+	font-size: 26px;
 }
 
 .rated-star {
-    color: yellow;
+	color: yellow;
 }
 
 #profile-information-content {
-    height: 100%;
+	height: 100%;
 }
 
 #profile-content {
-    border: 1px solid black;
-    height: 100%;
-    background-color: #ddd;
+	border: 1px solid black;
+	height: 100%;
+	background-color: #ddd;
 }
 
 #profile-tutor-list {
-    background-color: blue;
-    width: 100%;
-    white-space: nowrap;
-    overflow-x: scroll;
+	background-color: blue;
+	width: 100%;
+	white-space: nowrap;
+	overflow-x: scroll;
 }
 
 #profile-class-list {
-    background-color: blue;
-    width: 100%;
-    white-space: nowrap;
-    overflow-x: auto;
+	background-color: blue;
+	width: 100%;
+	white-space: nowrap;
+	overflow-x: auto;
 }
 
 #profile-tutor-container {
-    padding: 15px;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
+	padding: 15px;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
 }
 
 #profile-class-container {
-    padding: 15px;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
+	padding: 15px;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
 }
 
 .profile-tutors {
-    display: inline-block;
-    width: 175px;
-    height: 185px;
-    margin: 2px;
-    border: 1px black solid;
-    background-color: white;
+	display: inline-block;
+	width: 175px;
+	height: 185px;
+	margin: 2px;
+	border: 1px black solid;
+	background-color: white;
 }
 
 .profile-classes {
-    display: inline-block;
-    width: 175px;
-    height: 185px;
-    margin: 2px;
-    border: 1px black solid;
-    background-color: white;
+	display: inline-block;
+	width: 175px;
+	height: 185px;
+	margin: 2px;
+	border: 1px black solid;
+	background-color: white;
 }
 
 .profile-classes-title {
-    min-height: 40px;
+	min-height: 40px;
 }
 
-.profile-tutors>h6 {
-    margin: 0;
+.profile-tutors > h6 {
+	margin: 0;
 }
 
 .tutors-picture {
-    width: 110px;
-    height: 110px;
+	width: 110px;
+	height: 110px;
 }
 
 /*PROFILE SETUP*/
 
-.profile-setup {}
+.profile-setup {
+}
 
 /*MESSENGER*/
 
 .messenger-container {
-    margin: auto;
-    height: 700px;
-    max-width: 500px;
-    border: 1px black solid;
+	margin: auto;
+	height: 700px;
+	max-width: 500px;
+	border: 1px black solid;
 }
 
 .messenger-settings {
-    height: 5%;
-    border-bottom: 1px black solid;
+	height: 5%;
+	border-bottom: 1px black solid;
 }
 
 .messages-container {
-    height: 78%;
-    position: relative;
-    padding: 10px 5px;
-    overflow-y: auto;
+	height: 78%;
+	position: relative;
+	padding: 10px 5px;
+	overflow-y: auto;
 }
 
 .messenger-settings-item {
-    display: inline-block;
-    margin: auto;
+	display: inline-block;
+	margin: auto;
 }
 
 .messenger-input {
-    height: 10%;
-    width: 100%;
-    border: none;
-    border-top: 1px black solid;
-    border-bottom: 1px black solid;
-    padding: 15px;
-    resize: none;
+	height: 10%;
+	width: 100%;
+	border: none;
+	border-top: 1px black solid;
+	border-bottom: 1px black solid;
+	padding: 15px;
+	resize: none;
 }
 
 .message {
-    height: auto;
-    width: auto;
-    max-width: 55%;
-    /* top: 10px; */
-    padding: 5px 10px;
-    display: inline-block;
-    word-wrap: break-word;
-    text-align: left;
+	height: auto;
+	width: auto;
+	max-width: 55%;
+	/* top: 10px; */
+	padding: 5px 10px;
+	display: inline-block;
+	word-wrap: break-word;
+	text-align: left;
 }
 
 .left-message {
-    /* left: 20px; */
-    /* position: absolute; */
-    margin-left: 0;
-    margin-right: auto;
-    background-color: #f0f0f0;
-    border-radius: 10px 10px 10px 0px;
+	/* left: 20px; */
+	/* position: absolute; */
+	margin-left: 0;
+	margin-right: auto;
+	background-color: #f0f0f0;
+	border-radius: 10px 10px 10px 0px;
 }
 
 .right-message {
-    /* right: 20px; */
-    /* position: absolute; */
-    margin-left: auto;
-    margin-right: 0;
-    background-color: #0ba1fb;
-    border-radius: 10px 10px 0px 10px;
+	/* right: 20px; */
+	/* position: absolute; */
+	margin-left: auto;
+	margin-right: 0;
+	background-color: #0ba1fb;
+	border-radius: 10px 10px 0px 10px;
 }
 
 .message-text {
-    color: white;
-    display: inline;
+	color: white;
+	display: inline;
 }
 
 .message-date {
-    color: #444444;
-    font-size: 8px;
-    margin: 0;
+	color: #444444;
+	font-size: 8px;
+	margin: 0;
 }
 
 .message-wrapper {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .view-more-messages {
-    position: absolute;
-    width: 10%;
-    top: 0;
-    left: 47.25%;
-    padding: 2px 10px;
-    font-size: 12px;
-    border: gray 0.5px solid;
-    background: none;
+	position: absolute;
+	width: 10%;
+	top: 0;
+	left: 47.25%;
+	padding: 2px 10px;
+	font-size: 12px;
+	border: gray 0.5px solid;
+	background: none;
 }
 
 .view-more-messages:active {
-    border: none;
+	border: none;
 }
 
 #send-message {
-    margin-right: 2%;
-    margin-left: auto;
-    display: block;
+	margin-right: 2%;
+	margin-left: auto;
+	display: block;
 }
 
 .user-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 0px 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin: 0px 10px;
 }
 
 .chat-settings {
-    width: 10%;
-    font-size: 18px;
-    margin: auto;
+	width: 10%;
+	font-size: 18px;
+	margin: auto;
 }
 
 .chat-name {
-    width: 80%;
-    margin: auto;
+	width: 80%;
+	margin: auto;
 }
 
 .exit-chat {
-    width: 10%;
-    margin: auto;
+	width: 10%;
+	margin: auto;
 }
 
 .messages-settings-buttons {
-    border: none;
-    background: none;
+	border: none;
+	background: none;
+}
+
+.Messenger {
+	width: 20vw;
+	background-color: red;
+	/* height: 100vh; */
+	display: flex;
+	flex-direction: column;
+	flex: 0 1;
 }

@@ -7,8 +7,11 @@ const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 const messages = require("./routes/api/messages");
+const classes = require("./routes/api/classes");
 
 const app = express();
+
+require("dotenv").config();
 
 // Body parse middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,6 +39,7 @@ app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 app.use("/api/messages", messages);
+app.use("/api/classes", classes);
 
 const port = process.env.PORT || 5000;
 
@@ -53,5 +57,6 @@ io.on("connection", function(socket) {
 
 	socket.on("disconnect", function(socket) {
 		console.log("A User Disconnected");
+		delete socket;
 	});
 });
