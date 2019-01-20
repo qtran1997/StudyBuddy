@@ -9,13 +9,13 @@ const posts = require("./routes/api/posts");
 const messages = require("./routes/api/messages");
 const classes = require("./routes/api/classes");
 
-const app = express();
+const serverapp = express();
 
 require("dotenv").config();
 
 // Body parse middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+serverapp.use(bodyParser.urlencoded({ extended: false }));
+serverapp.use(bodyParser.json());
 
 // DB CONFIG
 const db = require("./config/keys").mongoURI;
@@ -30,20 +30,20 @@ mongoose
 	.catch(err => console.log(err));
 
 // Passport middleware
-app.use(passport.initialize());
+serverapp.use(passport.initialize());
 
 // Passport Config
 require("./config/passport")(passport);
 // Use Routes
-app.use("/api/users", users);
-app.use("/api/profile", profile);
-app.use("/api/posts", posts);
-app.use("/api/messages", messages);
-app.use("/api/classes", classes);
+serverapp.use("/api/users", users);
+serverapp.use("/api/profile", profile);
+serverapp.use("/api/posts", posts);
+serverapp.use("/api/messages", messages);
+serverapp.use("/api/classes", classes);
 
 const port = process.env.PORT || 5000;
 
-var server = app.listen(port, (req, res) =>
+var server = serverapp.listen(port, (req, res) =>
 	console.log(`Server running on port ${port}`)
 );
 
